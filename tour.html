@@ -1,0 +1,115 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHADOW CAMP 제주 | 파이터처럼 사는 2박 3일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080e1a;--card:#121e31;--line:#2a3c51;--cyan:#39e2f1;--pink:#ec62a8;--gold:#e6b871;--text:#f3f9ff;--muted:#a0b0c2}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 'Noto Sans KR',system-ui,'Malgun Gothic',sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+header{position:sticky;top:0;z-index:5;background:#0b1323f2;border-bottom:1px solid var(--line)}
+.wrap{max-width:1100px;margin:auto;padding-inline:24px}
+header .wrap{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.home{font-size:14px;color:var(--muted);border:1px solid var(--line);padding:8px 14px;border-radius:9px}.home:hover{color:var(--text);border-color:var(--cyan)}
+.logo{font-weight:900;letter-spacing:.08em}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--cyan);font-weight:900}
+h1{font-size:clamp(42px,7vw,84px);line-height:1.05;letter-spacing:-.05em;margin:14px 0 18px}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.2;margin:8px 0 14px}
+h3{font-size:20px;margin:0 0 6px}p{margin:0 0 10px}.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--cyan);color:#06141f;border:0;border-radius:10px;font-weight:800;padding:13px 22px;min-height:48px}.btn.alt{background:transparent;border:1px solid #61758b;color:var(--text)}
+.hero{padding:70px 0 50px;background:radial-gradient(900px 400px at 80% 0%,#39e2f11f,transparent 60%),radial-gradient(700px 400px at 0% 100%,#ec62a81a,transparent 60%)}
+.hero .lead{font-size:19px;font-weight:700;margin-bottom:6px}.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.tags span{display:inline-block;font-size:12px;color:var(--cyan);border:1px solid #2b6977;border-radius:8px;padding:5px 10px;margin:14px 6px 0 0}
+section{padding:60px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:1px solid var(--line);border-radius:16px;background:linear-gradient(140deg,#16253a,#0c1525);padding:24px}
+.card .num{font-size:13px;font-weight:900;color:var(--cyan);margin-bottom:10px}.card:nth-child(2) .num{color:var(--pink)}.card:nth-child(3) .num{color:var(--gold)}
+.card p{color:var(--muted);font-size:14px}
+.icon{font-size:34px;line-height:1;margin-bottom:14px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.day h3{display:flex;align-items:center;gap:10px}.day h3 b{font-size:12px;background:var(--cyan);color:#06141f;padding:3px 9px;border-radius:20px}.day:nth-child(2) h3 b{background:var(--pink);color:#fff}.day:nth-child(3) h3 b{background:var(--gold)}.coach{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}.coach .card b{color:var(--cyan)}.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.vs .card h3{font-size:17px}.vs ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+.row{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}.row:last-child{border:0}.row{font-size:14px}.row time{flex:0 0 52px;font-weight:900;color:var(--cyan)}
+.price{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}
+.price table{width:100%;border-collapse:collapse;font-size:15px}.price td{padding:12px 0;border-bottom:1px solid var(--line)}.price td:last-child{text-align:right;font-weight:700}
+.price tr.total td{border:0;padding-top:16px;font-size:18px}.price tr.total td:last-child{color:var(--cyan);font-size:26px;font-weight:900}
+.example{display:inline-block;font-size:11px;color:var(--gold);border:1px solid #6b5a3a;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle;font-weight:700}
+.cta{display:flex;flex-direction:column;justify-content:center;text-align:center;gap:10px}
+.note{color:var(--muted);border-left:3px solid var(--gold);background:#e6b8710d;padding:14px 16px;font-size:13px;margin-top:18px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;background:#142237;border:1px solid var(--cyan);padding:14px 20px;border-radius:12px;font-size:14px;transition:.3s;pointer-events:none;max-width:90vw;text-align:center;z-index:9}.toast.show{opacity:1;transform:translateX(-50%)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:12px}
+@media(max-width:820px){.grid3,.coach,.vs{grid-template-columns:1fr}.days,.price{grid-template-columns:1fr}.hero{padding:46px 0 30px}section{padding:44px 0}}
+</style></head><body>
+<header><div class="wrap"><a class="home" href="index.html">← 홈으로</a><span class="logo">⬡ SHADOW CAMP</span></div></header>
+
+<div class="hero"><div class="wrap">
+<div class="eyebrow">KOREA'S FIGHT CAMP · 제주 2박 3일</div>
+<h1>3일 동안,<br><span style="color:var(--cyan)">파이터처럼</span> 산다.</h1>
+<p class="lead">푸켓까지 안 가도 되는 전지훈련. 제주에 만든 한국형 격투기 캠프, SHADOW CAMP.</p>
+<p class="muted">새벽 해변 러닝, 1:1 미트 훈련, 낮잠, 스파링, 아이스배스. 프로 선수의 하루를 그대로 살아 보는 2박 3일. 전담 미트 코치가 훈련은 물론 섬 가이드까지 함께합니다.</p>
+<div class="tags"><span>#1:1 미트 코치 동행</span><span>#파이터 루틴</span><span>#제주 전지훈련</span></div>
+<div class="actions"><a class="btn" href="#price">패키지 가격 보기</a><a class="btn alt" href="promo.html">15초 홍보 영상 ▶</a></div>
+</div></div>
+
+<section id="places"><div class="wrap">
+<div class="eyebrow">CAMP SPOTS</div><h2>캠프의 3가지 무대</h2><p class="muted" style="margin-bottom:26px">링 안에서, 바다에서, 회복실에서. 파이터의 하루가 펼쳐지는 곳이에요.</p>
+<div class="grid3">
+<article class="card"><div class="icon">🥊</div><div class="num">01 · OPEN RING</div><h3>오션뷰 오픈 링</h3><p>바다가 보이는 야외 링과 샌드백 존. 미트 1:1 라운드와 오후 스파링이 여기서 열려요.</p></article>
+<article class="card"><div class="icon">🌅</div><div class="num">02 · ROADWORK</div><h3>해변 러닝 & 오름 하이킹</h3><p>선수들의 새벽 로드워크를 그대로. 코치가 가이드가 되어 바닷길과 오름을 함께 달리고 걸어요.</p></article>
+<article class="card"><div class="icon">🧊</div><div class="num">03 · RECOVERY</div><h3>파이터 회복 존</h3><p>아이스배스, 사우나, 폼롤러 스트레칭. 훈련만큼 회복도 프로처럼 관리합니다.</p></article>
+</div></div></section>
+
+<section id="coach" style="background:#0a1220"><div class="wrap">
+<div class="eyebrow" style="color:var(--pink)">YOUR CORNER</div><h2>3일 내내 내 편, 전담 미트 코치</h2><p class="muted" style="margin-bottom:26px">코치 1명이 캠프 참가자 2명까지만 맡아요. 링 안에서는 코치, 링 밖에서는 가이드입니다.</p>
+<div class="coach">
+<div class="card"><h3>🥊 훈련할 때</h3><p>내 수준에 맞춘 미트 콤비네이션, 자세 교정, 스파링 코너 조언.</p></div>
+<div class="card"><h3>🗺️ 이동할 때</h3><p>해변 러닝 코스와 오름 하이킹을 안내하는 로컬 가이드.</p></div>
+<div class="card"><h3>🍽️ 쉴 때</h3><p>파이터 식단 설명, 컨디션 체크, SHADOW ARENA 앱 훈련 기록 정리.</p></div>
+</div></div></section>
+
+<section id="schedule"><div class="wrap">
+<div class="eyebrow">FIGHTER ROUTINE</div><h2>2박 3일 파이터 일과</h2><p class="muted" style="margin-bottom:26px">실제 선수들의 하루처럼 짰어요. 시간은 예시이며 컨디션에 따라 조절해요.</p>
+<div class="days">
+<div class="card day"><h3><b>DAY 1</b> 입소</h3>
+<div class="row"><time>13:00</time><span>캠프 입소 · 장비 지급 · 체성분 측정</span></div>
+<div class="row"><time>15:00</time><span>미트 코치 배정 · 기본기 클래스</span></div>
+<div class="row"><time>18:00</time><span>파이터 식단 디너</span></div>
+<div class="row"><time>20:00</time><span>아이스배스 · 스트레칭</span></div>
+<div class="row"><time>22:00</time><span>소등</span></div></div>
+<div class="card day"><h3><b>DAY 2</b> 풀 캠프</h3>
+<div class="row"><time>06:30</time><span>해변 러닝 5km (코치 동행)</span></div>
+<div class="row"><time>10:00</time><span>오전 훈련 · 미트 1:1 라운드</span></div>
+<div class="row"><time>13:00</time><span>점심 · 낮잠 (선수 루틴)</span></div>
+<div class="row"><time>16:00</time><span>오후 훈련 · 스파링 & 서킷</span></div>
+<div class="row"><time>19:00</time><span>회복 존 · 사우나</span></div></div>
+<div class="card day"><h3><b>DAY 3</b> 수료</h3>
+<div class="row"><time>06:30</time><span>오름 하이킹 (코치 가이드)</span></div>
+<div class="row"><time>09:00</time><span>파이터 식단 조식</span></div>
+<div class="row"><time>10:30</time><span>졸업 스파링 · FIGHT IQ 대결</span></div>
+<div class="row"><time>12:00</time><span>수료증 · 기념 사진 · 퇴소</span></div></div>
+</div></div></section>
+
+<section id="price" style="background:#0a1220"><div class="wrap">
+<div class="eyebrow">PRICE</div><h2>예상 비용 <span class="example">예시 가격</span></h2><p class="muted" style="margin-bottom:26px">1인 기준, 숙박·식사·코칭이 모두 들어간 올인클루시브 가격이에요. 국내 체육관·숙소 시세를 참고해 정한 기획 단계의 예시입니다.</p>
+<div class="price">
+<div class="card"><table>
+<tr><td class="muted" style="font-size:13px">항목</td><td class="muted" style="font-size:13px;font-weight:400">따로 할 때 (국내 시세)</td></tr>
+<tr><td>캠프 숙소 2박 (1인 기준)</td><td>약 100,000원</td></tr>
+<tr><td>전담 미트 코치 1:1 PT 4회</td><td>약 240,000원</td></tr>
+<tr><td>그룹 클래스 · 스파링 3일</td><td>약 90,000원</td></tr>
+<tr><td>파이터 식단 6끼</td><td>약 60,000원</td></tr>
+<tr><td>러닝·하이킹 가이드 · 회복 존</td><td>무료</td></tr>
+<tr><td>따로 하면 합계</td><td><s class="muted">약 490,000원</s></td></tr>
+<tr class="total"><td>SHADOW CAMP 1인 2박 3일<br><span style="font-size:13px;color:var(--pink);font-weight:700">약 20% 할인</span></td><td>390,000원</td></tr>
+</table></div>
+<div class="card cta"><div class="eyebrow">CONTACT</div><h3>캠프 신청·문의</h3><p class="muted">격투기 경험이 없어도 참가할 수 있어요.</p><button class="btn" id="ask">신청·문의하기</button><a class="btn alt" href="promo.html">홍보 영상 보기</a></div>
+</div>
+<div class="vs">
+<div class="card"><h3>✈️ 해외 전지훈련이라면</h3><ul><li>인천–푸켓 왕복 항공권만 평균 46만 원대</li><li>최소 1주일 이상 휴가가 필요해요</li><li>언어·현지 이동은 내가 해결해야 해요</li></ul></div>
+<div class="card" style="border-color:var(--cyan)"><h3>🥊 SHADOW CAMP라면</h3><ul><li>주말 포함 2박 3일, 연차 하루면 충분</li><li>한국어 코칭 + 전담 코치가 가이드까지</li><li>숙박·식사·훈련 다 합쳐 39만 원</li></ul></div>
+</div>
+<div class="note">SHADOW CAMP는 수업 과제로 만든 <b>가상의 캠프</b>입니다. 해외 격투기 캠프의 분위기를 참고했을 뿐 어떤 체육관과도 관계가 없으며, 장소·일정·가격은 모두 예시입니다. 실제 신청은 받지 않습니다.</div>
+</div></section>
+<footer><div class="wrap"><b>SHADOW CAMP</b> × SHADOW ARENA · 2026 가상 창업 과제 프로젝트 · <a href="index.html" style="text-decoration:underline">홈으로</a></div></footer>
+<div class="toast" id="toast" role="status">과제용 가상 캠프라 실제 신청·문의는 받지 않아요. 봐 주셔서 감사합니다!</div>
+<script>
+const t=document.getElementById('toast');let h;
+document.getElementById('ask').onclick=()=>{t.classList.add('show');clearTimeout(h);h=setTimeout(()=>t.classList.remove('show'),3000)};
+</script>
+</body></html>

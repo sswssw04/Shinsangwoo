@@ -1,0 +1,106 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SHADOW CAMP 제주 15초 홍보 영상</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#000;overflow:hidden}
+body{display:grid;place-items:center;font-family:'Noto Sans KR',system-ui,'Malgun Gothic',sans-serif}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;overflow:hidden;background:#060b15;color:#f3f9ff}
+.bg{position:absolute;inset:-200px;background:repeating-linear-gradient(115deg,transparent 0 120px,#39e2f10a 120px 124px)}
+.glow{position:absolute;width:1100px;height:1100px;border-radius:50%;filter:blur(40px);opacity:.55}
+#g1{background:radial-gradient(circle,#39e2f155,transparent 65%);left:-300px;top:-400px}
+#g2{background:radial-gradient(circle,#ec62a855,transparent 65%);right:-350px;bottom:-450px}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0}
+.kicker{font-size:34px;letter-spacing:.35em;font-weight:900;color:#39e2f1;margin-bottom:26px}
+.big{font-size:230px;font-weight:900;line-height:.95;letter-spacing:-.04em}
+.mid{font-size:150px;font-weight:900;line-height:1.05;letter-spacing:-.04em}
+.sub{font-size:64px;font-weight:900;margin-top:34px}
+.cyan{color:#39e2f1}.pink{color:#ec62a8}.gold{color:#e6b871}
+.idx{position:absolute;top:70px;left:90px;font-size:30px;font-weight:900;letter-spacing:.2em;color:#a0b0c2}
+.bar{position:absolute;left:0;bottom:0;height:10px;background:linear-gradient(90deg,#39e2f1,#ec62a8)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.tag{display:inline-block;font-size:30px;font-weight:700;color:#e6b871;border:3px solid #e6b87188;border-radius:14px;padding:6px 22px;margin-top:30px}
+#url{font-size:52px;font-weight:700;color:#a0b0c2;margin-top:44px;letter-spacing:.01em}
+#url b{color:#f3f9ff}
+#replay{position:fixed;right:24px;bottom:24px;z-index:9;background:#39e2f1;color:#06141f;border:0;border-radius:12px;padding:14px 22px;font:800 17px 'Noto Sans KR',system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 30px #0008}
+#home{position:fixed;left:24px;bottom:24px;z-index:9;color:#a0b0c2;font:600 15px system-ui,sans-serif;text-decoration:none;border:1px solid #2a3c51;border-radius:10px;padding:12px 16px;background:#0b1323cc}
+.capture #replay,.capture #home{display:none}
+</style></head><body>
+<div id="stage">
+ <div class="bg" id="bg"></div><div class="glow" id="g1"></div><div class="glow" id="g2"></div>
+
+ <div class="scene" id="s1"><div class="kicker" id="s1k">KOREA'S FIGHT CAMP · 제주</div><div class="big" id="s1t">SHADOW <span class="cyan">CAMP</span></div><div class="sub" id="s1s">3일 동안, <span class="pink">파이터처럼</span> 산다</div></div>
+
+ <div class="scene" id="p0"><div class="idx">01 / 03 · 캠프 무대</div><div class="kicker">🥊 OPEN RING</div><div class="mid">오션뷰<br><span class="cyan">오픈 링</span></div></div>
+ <div class="scene" id="p1"><div class="idx">02 / 03 · 캠프 무대</div><div class="kicker" style="color:#ec62a8">🌅 ROADWORK</div><div class="mid">해변 러닝<br><span class="pink">& 오름 하이킹</span></div></div>
+ <div class="scene" id="p2"><div class="idx">03 / 03 · 캠프 무대</div><div class="kicker" style="color:#e6b871">🧊 RECOVERY</div><div class="mid">파이터<br><span class="gold">회복 존</span></div></div>
+
+ <div class="scene" id="s3"><div class="kicker">1인 2박 3일 · 미트 코치 동행</div><div class="big"><span id="num">0</span><span style="font-size:120px">원</span></div><div class="tag">따로 하면 49만 원 → 약 20% 할인 · 예시 가격</div></div>
+
+ <div class="scene" id="s4"><div class="big" id="go">지금 <span class="cyan">떠나세요</span></div><div class="sub" id="s4s">SHADOW CAMP 제주 2박 3일</div><div id="url">sswssw04.github.io/<b>Shinsangwoo</b></div></div>
+
+ <div class="bar" id="bar"></div><div id="flash"></div>
+</div>
+<a id="home" href="tour.html">← 관광 페이지</a>
+<button id="replay">↻ 다시보기</button>
+<script>
+const $=id=>document.getElementById(id);
+const DUR=15;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const p=(t,a,b)=>clamp((t-a)/(b-a));
+const outCubic=x=>1-Math.pow(1-x,3);
+const outBack=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const outExpo=x=>x===1?1:1-Math.pow(2,-10*x);
+function shake(t,start,len,amp){const k=p(t,start,start+len);if(k<=0||k>=1)return[0,0];const d=amp*(1-k);return[Math.sin(t*97)*d,Math.cos(t*83)*d]}
+function vis(el,o,tf){el.style.opacity=o;el.style.transform=tf||'none'}
+function fade(t,a,b,inLen=.12,outLen=.12){return Math.min(p(t,a,a+inLen),1-p(t,b-outLen,b))}
+
+function render(t){
+ t=clamp(t,0,DUR);
+ // 배경 흐름
+ $('bg').style.transform=`translateX(${-(t*60)%124}px)`;
+ $('g1').style.transform=`translate(${Math.sin(t*.7)*120}px,${Math.cos(t*.5)*80}px)`;
+ $('g2').style.transform=`translate(${Math.cos(t*.6)*140}px,${Math.sin(t*.8)*90}px)`;
+ $('bar').style.width=(t/DUR*100)+'%';
+ // 컷 전환 플래시
+ const cuts=[0.18,2,4,6,8,12.05];let f=0;for(const c of cuts){const k=p(t,c,c+.22);if(k>0&&k<1)f=Math.max(f,(1-k)*.85)}$('flash').style.opacity=f;
+
+ // 0~2초: 제목 쾅
+ {const o=fade(t,0,2,.05,.15);const k=outBack(p(t,0,.35));const s=lerp(3.2,1,k);const [x,y]=shake(t,.3,.4,28);
+  vis($('s1'),o,`translate(${x}px,${y}px)`);
+  $('s1t').style.transform=`scale(${s})`;
+  vis($('s1k'),p(t,.45,.7),`translateY(${lerp(30,0,outCubic(p(t,.45,.7)))}px)`);
+  vis($('s1s'),p(t,.7,1),`translateY(${lerp(40,0,outCubic(p(t,.7,1)))}px)`);}
+
+ // 2~8초: 장소 3곳 (확대 → 슬라이드 → 흔들림)
+ for(let i=0;i<3;i++){const a=2+i*2,b=a+2,el=$('p'+i);const o=fade(t,a,b,.1,.15);const k=outExpo(p(t,a,a+.45));let tf;
+  if(i===0){tf=`scale(${lerp(2.2,1,k)+p(t,a+.45,b)*.06})`}
+  else if(i===1){tf=`translateX(${lerp(1400,0,k)-p(t,a+.45,b)*40}px)`}
+  else{const [x,y]=shake(t,a,.6,34);tf=`translate(${x}px,${y+lerp(-500,0,outBack(p(t,a,a+.4)))}px)`}
+  vis(el,o,tf)}
+
+ // 8~12초: 카운트업
+ {const o=fade(t,8,12,.1,.15);const k=outCubic(p(t,8.2,10.8));const n=Math.round(390000*k/100)*100;
+  $('num').textContent=n.toLocaleString('ko-KR');
+  const pop=t>10.8?lerp(1.12,1,outCubic(p(t,10.8,11.2))):1;
+  vis($('s3'),o,`scale(${lerp(.85,1,outCubic(p(t,8,8.4)))*pop})`);}
+
+ // 12~15초: 지금 떠나세요 + 주소
+ {const o=p(t,12,12.12);const k=outBack(p(t,12.05,12.4));const [x,y]=shake(t,12.35,.35,22);
+  vis($('s4'),o,`translate(${x}px,${y}px)`);
+  $('go').style.transform=`scale(${lerp(2.6,1,k)})`;
+  vis($('s4s'),p(t,12.6,12.9),`translateY(${lerp(30,0,outCubic(p(t,12.6,12.9)))}px)`);
+  vis($('url'),p(t,13,13.4),`translateY(${lerp(30,0,outCubic(p(t,13,13.4)))}px)`);}
+}
+
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);$('stage').style.transform=`translate(-50%,-50%) scale(${s})`}
+addEventListener('resize',fit);fit();
+
+const capture=new URLSearchParams(location.search).has('capture');
+let start=0,raf=0;
+function loop(now){const t=(now-start)/1000;render(t);if(t<DUR)raf=requestAnimationFrame(loop)}
+function play(){cancelAnimationFrame(raf);start=performance.now();raf=requestAnimationFrame(loop)}
+$('replay').onclick=play;
+if(capture){document.body.classList.add('capture');window.renderAt=render;render(0)}
+else{(document.fonts?document.fonts.ready:Promise.resolve()).then(play)}
+</script>
+</body></html>
